@@ -1,0 +1,211 @@
+/* =============================================
+   物理實驗模型 - 全域樣式
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* ---- Header ---- */
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+  border-bottom: 2px solid #334155;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  color: #60a5fa;
+  letter-spacing: 0.05em;
+}
+
+header .subtitle {
+  color: #94a3b8;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+}
+
+/* ---- Tab navigation ---- */
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #1e293b;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 0.55rem 1.4rem;
+  border: 2px solid #334155;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.tab-btn:hover {
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+
+.tab-btn.active {
+  background: #1d4ed8;
+  border-color: #3b82f6;
+  color: #fff;
+}
+
+/* ---- Sections ---- */
+.tab-section {
+  display: none;
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tab-section.active {
+  display: block;
+}
+
+.tab-section h2 {
+  font-size: 1.4rem;
+  color: #93c5fd;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #334155;
+}
+
+/* ---- Experiment layout ---- */
+.experiment-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.canvas-wrap {
+  flex: 1 1 400px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---- Controls ---- */
+.controls {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.formula-box {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #bfdbfe;
+}
+
+.formula-box strong {
+  color: #93c5fd;
+  font-size: 0.9rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  gap: 0.3rem;
+}
+
+label span {
+  color: #fbbf24;
+  font-weight: bold;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.info-box {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.8;
+  min-height: 80px;
+}
+
+/* ---- Buttons ---- */
+.btn-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.btn-row button {
+  flex: 1;
+  padding: 0.55rem 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 600;
+  transition: opacity 0.15s;
+}
+
+.btn-row button:first-child {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.btn-row button:last-child {
+  background: #475569;
+  color: #e2e8f0;
+}
+
+.btn-row button:hover {
+  opacity: 0.85;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 700px) {
+  .controls {
+    flex: 1 1 100%;
+  }
+
+  .canvas-wrap canvas {
+    width: 100%;
+    height: auto;
+  }
+}

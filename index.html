@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>物理實驗模型</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>🔬 物理實驗模型</h1>
+    <p class="subtitle">互動式物理模擬實驗平台</p>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="projectile">拋體運動</button>
+    <button class="tab-btn" data-tab="pendulum">單擺</button>
+    <button class="tab-btn" data-tab="spring">彈簧振子</button>
+    <button class="tab-btn" data-tab="circular">圓周運動</button>
+  </nav>
+
+  <!-- 拋體運動 -->
+  <section id="tab-projectile" class="tab-section active">
+    <h2>拋體運動 (Projectile Motion)</h2>
+    <div class="experiment-layout">
+      <div class="canvas-wrap">
+        <canvas id="projectileCanvas" width="700" height="400"></canvas>
+      </div>
+      <div class="controls">
+        <div class="formula-box">
+          <p><strong>公式</strong></p>
+          <p>x = v₀·cosθ·t</p>
+          <p>y = v₀·sinθ·t − ½g·t²</p>
+          <p>飛行時間 T = 2v₀sinθ / g</p>
+          <p>射程 R = v₀²sin2θ / g</p>
+        </div>
+        <label>初速度 v₀ <span id="v0Val">20</span> m/s
+          <input type="range" id="v0" min="5" max="50" value="20" />
+        </label>
+        <label>發射角 θ <span id="thetaVal">45</span>°
+          <input type="range" id="theta" min="1" max="89" value="45" />
+        </label>
+        <label>重力加速度 g <span id="gVal">9.8</span> m/s²
+          <input type="range" id="gProj" min="1" max="20" step="0.1" value="9.8" />
+        </label>
+        <div class="info-box" id="projInfo"></div>
+        <div class="btn-row">
+          <button id="projStart">▶ 發射</button>
+          <button id="projReset">↺ 重置</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 單擺 -->
+  <section id="tab-pendulum" class="tab-section">
+    <h2>單擺 (Simple Pendulum)</h2>
+    <div class="experiment-layout">
+      <div class="canvas-wrap">
+        <canvas id="pendulumCanvas" width="700" height="400"></canvas>
+      </div>
+      <div class="controls">
+        <div class="formula-box">
+          <p><strong>公式</strong></p>
+          <p>θ̈ = −(g/L)·sinθ</p>
+          <p>週期 T ≈ 2π√(L/g)（小角度）</p>
+          <p>E = ½mL²θ̇² + mgL(1−cosθ)</p>
+        </div>
+        <label>繩長 L <span id="pendLVal">1.5</span> m
+          <input type="range" id="pendL" min="0.3" max="3" step="0.1" value="1.5" />
+        </label>
+        <label>初始角度 θ₀ <span id="pendThetaVal">30</span>°
+          <input type="range" id="pendTheta" min="5" max="80" value="30" />
+        </label>
+        <label>重力加速度 g <span id="pendGVal">9.8</span> m/s²
+          <input type="range" id="pendG" min="1" max="20" step="0.1" value="9.8" />
+        </label>
+        <div class="info-box" id="pendInfo"></div>
+        <div class="btn-row">
+          <button id="pendPlay">▶ 播放</button>
+          <button id="pendReset">↺ 重置</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 彈簧振子 -->
+  <section id="tab-spring" class="tab-section">
+    <h2>彈簧振子 (Spring-Mass System)</h2>
+    <div class="experiment-layout">
+      <div class="canvas-wrap">
+        <canvas id="springCanvas" width="700" height="400"></canvas>
+      </div>
+      <div class="controls">
+        <div class="formula-box">
+          <p><strong>公式</strong></p>
+          <p>F = −kx（虎克定律）</p>
+          <p>ma = −kx</p>
+          <p>x(t) = A·cos(ωt + φ)</p>
+          <p>ω = √(k/m)，T = 2π/ω</p>
+        </div>
+        <label>彈簧常數 k <span id="springKVal">20</span> N/m
+          <input type="range" id="springK" min="1" max="100" value="20" />
+        </label>
+        <label>質量 m <span id="springMVal">1.0</span> kg
+          <input type="range" id="springM" min="0.1" max="5" step="0.1" value="1.0" />
+        </label>
+        <label>振幅 A <span id="springAVal">1.0</span> m
+          <input type="range" id="springA" min="0.1" max="2" step="0.1" value="1.0" />
+        </label>
+        <div class="info-box" id="springInfo"></div>
+        <div class="btn-row">
+          <button id="springPlay">▶ 播放</button>
+          <button id="springReset">↺ 重置</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 圓周運動 -->
+  <section id="tab-circular" class="tab-section">
+    <h2>均勻圓周運動 (Uniform Circular Motion)</h2>
+    <div class="experiment-layout">
+      <div class="canvas-wrap">
+        <canvas id="circularCanvas" width="700" height="400"></canvas>
+      </div>
+      <div class="controls">
+        <div class="formula-box">
+          <p><strong>公式</strong></p>
+          <p>v = ω·r</p>
+          <p>向心加速度 ac = v²/r = ω²·r</p>
+          <p>向心力 Fc = m·v²/r</p>
+          <p>週期 T = 2π/ω</p>
+        </div>
+        <label>角速度 ω <span id="circOmegaVal">2.0</span> rad/s
+          <input type="range" id="circOmega" min="0.1" max="10" step="0.1" value="2.0" />
+        </label>
+        <label>半徑 r <span id="circRVal">1.0</span> m
+          <input type="range" id="circR" min="0.2" max="2" step="0.1" value="1.0" />
+        </label>
+        <label>質量 m <span id="circMVal">1.0</span> kg
+          <input type="range" id="circM" min="0.1" max="5" step="0.1" value="1.0" />
+        </label>
+        <div class="info-box" id="circInfo"></div>
+        <div class="btn-row">
+          <button id="circPlay">▶ 播放</button>
+          <button id="circReset">↺ 重置</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="physics.js"></script>
+</body>
+</html>
